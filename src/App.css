@@ -6,14 +6,17 @@
 .unit-type #myList {
     width: 452px;
     height: 30px;
+    border-color: #d5cccc;
+    background-color: white;
 }
 
-#input-div {
+.input-div {
     display: inline-block;
     width: 210px;
     padding-top: 10px;
-    borderWidth:0.2;
-    border: thin solid white;
+    borderWidth: 0.2;
+    border: thin solid #d5cccc;
+    background-color: white;
 }
 
 .form {

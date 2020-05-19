@@ -1,16 +1,18 @@
 import React from 'react';
 import Unit from "./Unit";
+import ReactDOM from "react-dom";
 
-class Form extends React.Component {
-    constructor() {
-        super();
+class UnitType extends React.Component {
+    constructor(props) {
+        super(props);
         this.state = {
             List: [
                 "Feet",
                 "Inch",
                 "Centimeter",
                 "Yard"
-            ]
+            ],
+            unitType: "LENGTH"
         }
     }
 
@@ -24,8 +26,8 @@ class Form extends React.Component {
             ];
         let Weight =
             [
-                "Kilogram",
-                "Gram",
+                "Kilograms",
+                "Grams",
                 "Tonne"
             ];
         let Volume =
@@ -40,21 +42,23 @@ class Form extends React.Component {
                 "Celcius",
                 "Fahrenheit"
             ];
-        let list = event.target.value;
+        let unitType = event.target.value;
         let array;
-        if (list === "Length")
+        if (unitType === "Length")
             array = Length;
-        else if (list === "Weight")
+        else if (unitType === "Weight") {
             array = Weight;
-        else if (list === "Temperature")
+        } else if (unitType === "Temperature")
             array = Temperature;
         else
             array = Volume;
         this.setState({
                 unitType: event.target.value,
-                List: array
+                List: array,
             }
         )
+        ReactDOM.findDOMNode(document.getElementById('inputValue')).value = "";
+        ReactDOM.findDOMNode(document.getElementById('outputValue')).value = "";
     }
 
     render() {
@@ -69,16 +73,10 @@ class Form extends React.Component {
                     </select>
                 </div>
                 <br/>
-                <div className="form">
-                    <Unit list={this.state.List}/>
-                </div>
-                <h3 className={"form"} style={{padding: 10, paddingBottom: 30}}>= </h3>
-                <div className="form">
-                    <Unit list={this.state.List}/>
-                </div>
+                <Unit unitType={this.state.unitType} list={this.state.List}/>
             </form>
         )
     }
 }
 
-export default Form;
+export default UnitType;
